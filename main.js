@@ -3,6 +3,7 @@
 const electron      = require('electron');
 const GitHubApi     = require("github");
 const BrowserWindow = electron.BrowserWindow;
+const ipcMain       = electron.ipcMain;
 const app           = electron.app;
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -20,17 +21,6 @@ const github = new GitHubApi({
   headers: {
     "user-agent": "Starter-Kit-GitHub-App"
   }
-});
-
-const foo = github.repos.get({
-  user: "jkup",
-  repo: "shortcut"
-}, function(err, res) {
-  repositories.push({
-    name: res.name,
-    description: res.description,
-    stars: res.stargazers_count
-  });
 });
 
 function createWindow () {
@@ -71,4 +61,18 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipcMain.on('asynchronous-message', function(event, arg) {
+  const foo = github.repos.get({
+    user: "jkup",
+    repo: "shortcut"
+  }, function(err, res) {
+    repositories.push({
+      name: res.name,
+      description: res.description,
+      stars: res.stargazers_count
+    });
+  });
+  event.sender.send('asynchronous-reply', repositories);
 });
