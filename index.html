@@ -2,12 +2,38 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Starter Kit</title>
+    <link rel="stylesheet" type="text/css" href="css/photon.min.css" />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <div class="window">
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane-sm sidebar">
+            <ul class="list-group">
+              <li class="list-group-header">
+                <input class="form-control" type="text" placeholder="Find a project">
+              </li>
+              <li class="list-group-item">
+                <img class="img-circle media-object pull-left" src="/assets/img/avatar.jpg" width="32" height="32">
+                <div class="media-body">
+                  <strong>React Starter Kit</strong>
+                  <p>Some Description</p>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <img class="img-circle media-object pull-left" src="/assets/img/avatar2.png" width="32" height="32">
+                <div class="media-body">
+                  <strong>React-webpack starter kit</strong>
+                  <p>Another Description</p>
+                </div>
+              </li>
+              ...
+            </ul>
+          </div>
+          <div class="pane">Create a new project</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
