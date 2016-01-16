@@ -8,6 +8,30 @@ const app           = electron.app;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let repositories;
+
+const github = new GitHubApi({
+  version: "3.0.0",
+  // optional
+  debug: false,
+  protocol: "https",
+  host: "api.github.com",
+  timeout: 5000,
+  headers: {
+    "user-agent": "Starter-Kit-GitHub-App"
+  }
+});
+
+const foo = github.repos.get({
+  user: "jkup",
+  repo: "shortcut"
+}, function(err, res) {
+  repositories.push({
+    name: res.name,
+    description: res.description,
+    stars: res.stargazers_count
+  });
+});
 
 function createWindow () {
   // Create the browser window.
